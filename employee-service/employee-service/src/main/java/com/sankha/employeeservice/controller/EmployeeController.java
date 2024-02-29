@@ -17,7 +17,7 @@ public class EmployeeController {
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EmployeeResponse getEmployeeDetails(@PathVariable("id") int id){
-         return employeeService.getEmployeeDetail(id);
+        return employeeService.getEmployeeDetail(id);
     }
 
 }

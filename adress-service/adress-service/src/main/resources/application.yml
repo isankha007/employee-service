@@ -34,4 +34,6 @@ spring:
     table: flyway_schema_history_address
 server:
   port: 8182
+  servlet:
+    context-path: /address-service/api
 

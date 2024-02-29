@@ -34,4 +34,6 @@ spring:
     table: flyway_schema_history_employee
 server:
   port: 8181
+  servlet:
+    context-path: /employee-service/api
 
