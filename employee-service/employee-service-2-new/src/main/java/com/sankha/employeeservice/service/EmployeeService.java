@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sankha.employeeservice.dto.AddressResponse;
 import com.sankha.employeeservice.dto.EmployeeResponse;
 import com.sankha.employeeservice.entity.Employee;
+import com.sankha.employeeservice.feignclien.AddressFeignClient;
 import com.sankha.employeeservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,8 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    private final AddressFeignClient addressFeignClient;
+
     @Value("${address-service.base.url}")
     private String addressUrl;
     private final RestTemplate restTemplate ;
@@ -26,7 +29,7 @@ public class EmployeeService {
     public EmployeeResponse getEmployeeDetail(int id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
         EmployeeResponse employeeResponse = objectMapper.convertValue(employee, EmployeeResponse.class);
-        employeeResponse.setAddressResponse(restTemplate.getForObject(addressUrl+"address/get/{id}", AddressResponse.class,id));
+        employeeResponse.setAddressResponse(addressFeignClient.getAddressByEmployeeId(id));
         return employeeResponse;
     }
 }
