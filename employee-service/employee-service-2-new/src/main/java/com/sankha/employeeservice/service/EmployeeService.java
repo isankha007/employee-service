@@ -29,7 +29,7 @@ public class EmployeeService {
     public EmployeeResponse getEmployeeDetail(int id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
         EmployeeResponse employeeResponse = objectMapper.convertValue(employee, EmployeeResponse.class);
-        employeeResponse.setAddressResponse(addressFeignClient.getAddressByEmployeeId(id));
+        employeeResponse.setAddressResponse(addressFeignClient.getAddressByEmpId(id).getBody());
         return employeeResponse;
     }
 }
