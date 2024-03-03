@@ -37,3 +37,7 @@ server:
   servlet:
     context-path: /address-service/api
 
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:5000/eureka

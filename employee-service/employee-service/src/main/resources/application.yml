@@ -40,3 +40,7 @@ address-service:
   base:
     url: http://localhost:8182/address-service/api/
 
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:5000/eureka
