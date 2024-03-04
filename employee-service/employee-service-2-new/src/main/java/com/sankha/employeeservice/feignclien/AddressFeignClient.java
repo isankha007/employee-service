@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "address-service", url = "http://localhost:8182/address-service/api/")
+@FeignClient(name = "ADDRESS-SERVICE", path = "/address-service/api/address")
 public interface AddressFeignClient {//proxy
     @GetMapping("/get/{emp_id}")
     public ResponseEntity<AddressResponse> getAddressByEmpId(@PathVariable("emp_id") Integer empId);

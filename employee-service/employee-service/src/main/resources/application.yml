@@ -44,3 +44,12 @@ eureka:
   client:
     service-url:
       defaultZone : http://localhost:5000/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#  info:
+#    env:
+#      enabled: true
