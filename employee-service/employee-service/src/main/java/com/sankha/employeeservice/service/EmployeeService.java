@@ -40,10 +40,10 @@ public class EmployeeService {
     private AddressResponse getAddress(int id) {
 //        List<ServiceInstance> instances = discoveryClient.getInstances("ADDRESS-SERVICE");
 //        String uri = instances.get(0).getUri().toString();
-        ServiceInstance instance = loadBalancerClient.choose("ADDRESS-SERVICE");
-        String uri = instance.getUri().toString();
-        String contextRoot = instance.getMetadata().get("configPath");
-        System.out.println("uri = " + uri+contextRoot);
-        return restTemplate.getForObject(uri +contextRoot+ "/address/get/{id}", AddressResponse.class, id);
+//        ServiceInstance instance = loadBalancerClient.choose("ADDRESS-SERVICE");
+//        String uri = instance.getUri().toString();
+//        String contextRoot = instance.getMetadata().get("configPath");
+//        System.out.println("uri = " + uri+contextRoot);
+        return restTemplate.getForObject("http://ADDRESS-SERVICE/address-service/api/address/get/{id}", AddressResponse.class, id);
     }
 }
