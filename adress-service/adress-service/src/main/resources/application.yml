@@ -41,3 +41,9 @@ eureka:
   client:
     service-url:
       defaultZone : http://localhost:5000/eureka
+
+  instance:
+    metadata-map:
+      configPath: /address-service/api
+      user: sankha
+      password: password
